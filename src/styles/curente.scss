@@ -1,0 +1,900 @@
+.curente-page {
+  position: relative;
+  z-index: 0;
+}
+
+.curente-page .page-hero {
+  margin: 3.3rem 0 0.6rem 0; /* coboară titlul ca să nu intre sub navbar */
+  position: relative;
+  z-index: 0; /* asigură că stă sub popover */
+}
+
+.curente-page .page-title {
+  letter-spacing: 0.38em;
+  position: relative;
+  z-index: 0; /* stă sub timeline */
+  pointer-events: none; /* să nu interfereze la hover */
+}
+
+.curente-page .page-desc {
+  margin-bottom: 0.2rem;
+}
+
+.curente-timeline-wrapper {
+  position: relative;
+  margin: 20px 0 36px; /* spațiu mai mic până la footer */
+  z-index: 50; /* peste hero */
+}
+/* Nu mai există overlay vizual pentru cue; folosim auto-nudge pe timeline */
+
+.curente-timeline-wrapper.dark-theme {
+  --axis: rgba(255, 213, 145, 0.55);
+  --card-bg: #4e2e1e;
+  --text: rgba(255,255,255,0.95);
+  --muted: rgba(255,255,255,0.75);
+  --button-bg: rgba(47,24,0,0.92);
+  --button-fg: #ffd591;
+}
+
+.curente-timeline-wrapper:not(.dark-theme) {
+  --axis: rgba(124, 79, 43, 0.35);
+  --card-bg: #fff;
+  --text: #2a170a;
+  --muted: #5a4639;
+  --button-bg: rgba(255,179,71,0.92);
+  --button-fg: #2a170a;
+}
+
+.curente-timeline-axis {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--axis);
+  top: 232px; /* recalculat pentru diametru 150px (padding-top 155px + 75px radius + mic offset) */
+  border-radius: 2px;
+  z-index: 0; /* în spatele bulinelor */
+}
+
+.curente-timeline-scroll {
+  overflow-x: hidden; /* ascundem scroll-ul orizontal, folosim drag/swipe */
+  overflow-y: visible; /* permite popoverelor să iasă în sus */
+  cursor: grab;
+  touch-action: none; /* vom bloca/permite manual în handler ca să evităm scroll simultan */
+  overscroll-behavior-x: contain; /* previne bounce / glow lateral */
+}
+
+.curente-timeline-scroll.dragging {
+  cursor: grabbing;
+}
+
+.curente-timeline-track {
+  display: inline-flex;
+  gap: 100px; /* spațiu mai mare între buline */
+  padding: 155px 16px 120px; /* micșorăm spațiul de sub timeline */
+  min-width: 100%;
+}
+
+.curente-item {
+  width: 260px; /* lățime mai mare pentru conținut */
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.curente-checkpoint {
+  width: 150px;
+  height: 150px; /* buline mai mari */
+  border-radius: 50%;
+  background: #111;
+  display: grid;
+  place-items: center;
+  position: relative;
+  transition: transform 0.2s ease;
+  z-index: 2; /* peste axă */
+}
+
+.curente-checkpoint:hover {
+  transform: scale(1.06);
+}
+
+.curente-checkpoint-img {
+  width: 130px;
+  height: 130px; /* imagine mai mare în bulină */
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid rgba(255,255,255,0.85);
+}
+
+/* Popover deasupra bulinei la hover */
+.curente-popover {
+  position: absolute;
+  /* implicit DEASUPRA bulinei */
+  bottom: 106%;
+  left: 50%;
+  transform: translateX(-50%) translateY(8px);
+  background: var(--card-bg);
+  color: var(--text);
+  box-shadow: 0 12px 28px rgba(0,0,0,0.28);
+  border: 1px solid rgba(0,0,0,0.08);
+  border-radius: 14px;
+  padding: 16px 18px;
+  width: 340px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.18s ease, transform 0.18s ease;
+  z-index: 1000; /* sigur peste hero și navbar */
+}
+
+.curente-checkpoint:hover .curente-popover {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(0);
+}
+
+.curente-popover-title {
+  font-weight: 800;
+  margin-bottom: 4px;
+}
+
+.curente-popover-date {
+  font-size: 0.95rem;
+  opacity: 0.8;
+  margin-bottom: 8px;
+}
+
+.curente-popover-authors {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.curente-author {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.curente-author img {
+  width: 28px;
+  height: 28px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 1px solid rgba(0,0,0,0.15);
+}
+
+.curente-year {
+  margin-top: 14px;
+  font-weight: 800;
+  color: var(--text);
+}
+
+.curente-desc {
+  margin-top: 6px;
+  text-align: center;
+  color: var(--muted);
+  min-height: 52px;
+  max-width: 300px;
+}
+
+.curente-button {
+  margin-top: 10px;
+  background: var(--button-bg);
+  color: var(--button-fg);
+  border: none;
+  padding: 10px 16px;
+  border-radius: 999px;
+  cursor: pointer;
+  font-weight: 700;
+  box-shadow: 0 2px 16px 0 rgba(124, 79, 43, 0.10);
+  transition: transform 0.15s ease, background 0.2s ease, box-shadow 0.2s ease;
+  outline: none;
+  &:focus{
+    outline: none;
+  }
+}
+
+.curente-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 24px 0 rgba(124,79,43,0.18);
+}
+
+/* Ascundem scrollbar vizual, păstrăm funcționalitatea pentru tastatură */
+.curente-timeline-scroll::-webkit-scrollbar {
+  height: 0;
+}
+
+// Tablet styles (768px - 1024px)
+@media (max-width: 1024px) and (min-width: 769px) {
+  .curente-timeline-track {
+    gap: 80px;
+    padding: 140px 16px 100px;
+  }
+
+  .curente-item {
+    width: 240px;
+  }
+
+  .curente-checkpoint {
+    width: 130px;
+    height: 130px;
+  }
+
+  .curente-checkpoint-img {
+    width: 115px;
+    height: 115px;
+  }
+
+  .curente-timeline-axis {
+    top: 200px; // ajustat pentru checkpoint mai mic
+  }
+
+  .curente-popover {
+    width: 300px;
+    padding: 14px 16px;
+  }
+
+  .curente-desc {
+    max-width: 240px;
+    font-size: 0.95rem;
+  }
+
+  .curente-year {
+    font-size: 1.1rem;
+  }
+}
+
+// Mobile styles (< 768px)
+@media (max-width: 768px) {
+  .curente-page .page-hero {
+    margin: 2.5rem 0 0.5rem 0;
+  }
+
+  .curente-page .page-title {
+    letter-spacing: 0.25em;
+    font-size: 1.8rem;
+  }
+
+  .curente-page .page-desc {
+    font-size: 0.95rem;
+    padding: 0 1rem;
+  }
+
+  .curente-timeline-wrapper {
+    margin: 16px 0 24px;
+  }
+
+  .curente-timeline-track {
+    gap: 60px;
+    padding: 120px 12px 80px;
+  }
+
+  .curente-item {
+    width: 220px;
+  }
+
+  .curente-checkpoint {
+    width: 110px;
+    height: 110px;
+  }
+
+  .curente-checkpoint-img {
+    width: 95px;
+    height: 95px;
+    border-width: 1.5px;
+  }
+
+  .curente-timeline-axis {
+    top: 165px; // ajustat pentru checkpoint mai mic
+    height: 1.5px;
+  }
+
+  .curente-popover {
+    width: 280px;
+    padding: 12px 14px;
+    bottom: 115%;
+    left: 50%;
+    transform: translateX(-50%) translateY(8px);
+  }
+
+  .curente-checkpoint:hover .curente-popover {
+    transform: translateX(-50%) translateY(0);
+  }
+
+  .curente-popover-title {
+    font-size: 1rem;
+  }
+
+  .curente-popover-date {
+    font-size: 0.85rem;
+  }
+
+  .curente-popover-authors {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+
+  .curente-author {
+    font-size: 0.9rem;
+  }
+
+  .curente-author img {
+    width: 24px;
+    height: 24px;
+  }
+
+  .curente-year {
+    font-size: 1rem;
+    margin-top: 12px;
+  }
+
+  .curente-desc {
+    max-width: 200px;
+    font-size: 0.9rem;
+    min-height: 48px;
+    margin-top: 4px;
+  }
+
+  .curente-button {
+    padding: 8px 14px;
+    font-size: 0.9rem;
+    margin-top: 8px;
+  }
+}
+
+// Small mobile styles (< 480px)
+@media (max-width: 480px) {
+  .curente-page .page-hero {
+    margin: 2rem 0 0.4rem 0;
+  }
+
+  .curente-page .page-title {
+    letter-spacing: 0.2em;
+    font-size: 1.5rem;
+  }
+
+  .curente-page .page-desc {
+    font-size: 0.85rem;
+    padding: 0 0.75rem;
+  }
+
+  .curente-timeline-wrapper {
+    margin: 12px 0 20px;
+  }
+
+  .curente-timeline-track {
+    gap: 50px;
+    padding: 100px 8px 70px;
+  }
+
+  .curente-item {
+    width: 180px;
+  }
+
+  .curente-checkpoint {
+    width: 90px;
+    height: 90px;
+  }
+
+  .curente-checkpoint-img {
+    width: 78px;
+    height: 78px;
+    border-width: 1.5px;
+  }
+
+  .curente-timeline-axis {
+    top: 135px; // ajustat pentru checkpoint mai mic
+    height: 1.5px;
+  }
+
+  .curente-popover {
+    width: 240px;
+    padding: 10px 12px;
+    bottom: 110%;
+    border-radius: 12px;
+  }
+
+  .curente-popover-title {
+    font-size: 0.95rem;
+    margin-bottom: 3px;
+  }
+
+  .curente-popover-date {
+    font-size: 0.8rem;
+    margin-bottom: 6px;
+  }
+
+  .curente-popover-authors {
+    gap: 5px;
+  }
+
+  .curente-author {
+    font-size: 0.85rem;
+    gap: 6px;
+  }
+
+  .curente-author img {
+    width: 22px;
+    height: 22px;
+  }
+
+  .curente-year {
+    font-size: 0.95rem;
+    margin-top: 10px;
+  }
+
+  .curente-desc {
+    max-width: 170px;
+    font-size: 0.85rem;
+    min-height: 44px;
+    margin-top: 3px;
+  }
+
+  .curente-button {
+    padding: 7px 12px;
+    font-size: 0.85rem;
+    margin-top: 6px;
+  }
+}
+
+/* Curent detail page authors section */
+.curent-page {
+  .posts-section {
+    background: #fff;
+    border-radius: 18px;
+    box-shadow: 0 2px 12px 0 rgba(124, 79, 43, 0.07);
+    border: 1.5px solid #ececec;
+    padding: 1.2rem 1.3rem 1.4rem;
+  }
+
+  .posts-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+
+    h3 {
+      margin: 0;
+      font-weight: 800;
+      font-size: 1.25rem;
+      color: #a97c50;
+    }
+  }
+
+  .friends-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 14px;
+  }
+
+  .friend-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    background: #fffbe6;
+    border: 1px solid #f0e6d6;
+    border-radius: 14px;
+    padding: 14px 12px;
+    cursor: pointer;
+    box-shadow: 0 2px 8px 0 rgba(124, 79, 43, 0.10);
+    transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+  }
+
+  .friend-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px 0 rgba(124, 79, 43, 0.16);
+    background: #fff8d6;
+  }
+
+  .friend-avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 4px solid #fff;
+    box-shadow: 0 2px 8px 0 rgba(124, 79, 43, 0.15);
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+  }
+
+  .friend-name {
+    font-weight: 800;
+    color: #7c4f2b;
+    text-align: center;
+    font-size: 0.98rem;
+  }
+
+  .empty-state {
+    text-align: center;
+    color: #777;
+    font-style: italic;
+    padding: 10px 0 4px;
+  }
+
+  .curent-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .curent-section {
+    background: #fff;
+    border-radius: 18px;
+    border: 1.5px solid #f0e6d6;
+    box-shadow: 0 2px 12px rgba(124, 79, 43, 0.08);
+    padding: 20px 22px;
+
+    h3 {
+      margin: 0 0 8px;
+      font-size: 1.35rem;
+      color: #7c4f2b;
+    }
+  }
+
+  .curent-section-subtitle {
+    margin: 0 0 12px;
+    color: #9c6b3d;
+    font-weight: 600;
+  }
+
+  .curent-paragraph {
+    margin: 0 0 12px;
+    color: #3d2b1d;
+    line-height: 1.6;
+  }
+
+  .curent-subheading {
+    margin: 12px 0 8px;
+    font-size: 1.05rem;
+    color: #a06a32;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .curent-list-wrapper {
+    margin-bottom: 6px;
+  }
+
+  .curent-list-intro {
+    margin: 0 0 6px;
+    font-weight: 600;
+    color: #5e3b1a;
+  }
+
+  .curent-list {
+    margin: 0;
+    padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    li {
+      color: #2f1f12;
+      line-height: 1.5;
+    }
+  }
+
+  .curent-list-dash {
+    list-style: none;
+    padding-left: 0;
+
+    li {
+      position: relative;
+      padding-left: 10px;
+    }
+
+    li::before {
+      position: absolute;
+      left: 0;
+      color: #a06a32;
+    }
+  }
+
+  .curent-list-numbered {
+    list-style-type: decimal;
+  }
+
+  .curent-list-item-title {
+    font-weight: 700;
+    color: #5c3412;
+  }
+
+  .curent-list-item-description {
+    color: #3c2a1f;
+  }
+
+  .curent-sublist {
+    margin: 6px 0 0;
+    padding-left: 18px;
+    list-style-type: disc;
+
+    li {
+      color: #4b3424;
+    }
+  }
+}
+
+// Dark theme styles for curent page
+.dark-theme {
+  .curent-page {
+    .empty-state {
+      color: rgba(255, 255, 255, 0.7);
+    }
+    .curent-section {
+      background: rgba(58, 33, 0, 0.95);
+      border-color: rgba(255, 255, 255, 0.08);
+      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
+
+      h3 {
+        color: #f3d7a4;
+      }
+    }
+
+    .curent-section-subtitle,
+    .curent-list-intro,
+    .curent-list-item-title {
+      color: #f0c98f;
+    }
+
+    .curent-paragraph,
+    .curent-list li,
+    .curent-list-item-description,
+    .curent-sublist li {
+      color: rgba(255, 255, 255, 0.86);
+    }
+
+    .curent-subheading {
+      color: #ffde9a;
+    }
+
+    .curent-list-dash li::before {
+      color: #ffde9a;
+    }
+  }
+}
+// Responsive styles for curent detail page
+@media (max-width: 1024px) and (min-width: 769px) {
+  .curent-page {
+    .posts-section {
+      padding: 1rem 1.1rem 1.2rem;
+    }
+
+    .posts-header h3 {
+      font-size: 1.15rem;
+    }
+
+    .friends-grid {
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 12px;
+    }
+
+    .friend-avatar {
+      width: 90px;
+      height: 90px;
+    }
+
+    .curent-section {
+      padding: 18px 20px;
+
+      h3 {
+        font-size: 1.25rem;
+      }
+    }
+
+    .curent-subheading {
+      font-size: 1rem;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .curent-page {
+    margin-top: -15%;
+
+    .posts-section {
+      padding: 1rem;
+      border-radius: 14px;
+    }
+
+    .posts-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 8px;
+      margin-bottom: 12px;
+
+      h3 {
+        font-size: 1.1rem;
+      }
+    }
+
+    .friends-grid {
+      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+      gap: 10px;
+    }
+
+    .friend-card {
+      padding: 12px 10px;
+      border-radius: 12px;
+    }
+
+    .friend-avatar {
+      width: 80px;
+      height: 80px;
+      border-width: 3px;
+    }
+
+    .friend-name {
+      font-size: 0.9rem;
+    }
+
+    .curent-content {
+      gap: 16px;
+    }
+
+    .curent-section {
+      padding: 16px 18px;
+      border-radius: 14px;
+
+      h3 {
+        font-size: 1.2rem;
+        margin-bottom: 6px;
+      }
+    }
+
+    .curent-section-subtitle {
+      font-size: 0.95rem;
+      margin-bottom: 10px;
+    }
+
+    .curent-paragraph {
+      font-size: 0.95rem;
+      margin-bottom: 10px;
+      line-height: 1.55;
+    }
+
+    .curent-subheading {
+      font-size: 0.95rem;
+      margin: 10px 0 6px;
+    }
+
+    .curent-list {
+      padding-left: 18px;
+      gap: 6px;
+
+      li {
+        font-size: 0.95rem;
+      }
+    }
+
+    .curent-list-intro {
+      font-size: 0.95rem;
+    }
+
+    .curent-list-item-title {
+      font-size: 0.95rem;
+    }
+
+    .curent-list-item-description {
+      font-size: 0.95rem;
+    }
+
+    .curent-sublist {
+      padding-left: 16px;
+      margin: 5px 0 0;
+
+      li {
+        font-size: 0.95rem;
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .curent-page {
+    margin-top: -12%;
+
+    .posts-section {
+      padding: 0.9rem;
+      border-radius: 12px;
+    }
+
+    .posts-header {
+      margin-bottom: 10px;
+
+      h3 {
+        font-size: 1rem;
+      }
+    }
+
+    .friends-grid {
+      grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+      gap: 8px;
+    }
+
+    .friend-card {
+      padding: 10px 8px;
+      border-radius: 10px;
+    }
+
+    .friend-avatar {
+      width: 70px;
+      height: 70px;
+      border-width: 2px;
+    }
+
+    .friend-name {
+      font-size: 0.85rem;
+    }
+
+    .curent-content {
+      gap: 14px;
+    }
+
+    .curent-section {
+      padding: 14px 16px;
+      border-radius: 12px;
+
+      h3 {
+        font-size: 1.1rem;
+        margin-bottom: 5px;
+      }
+    }
+
+    .curent-section-subtitle {
+      font-size: 0.9rem;
+      margin-bottom: 8px;
+    }
+
+    .curent-paragraph {
+      font-size: 0.9rem;
+      margin-bottom: 8px;
+      line-height: 1.5;
+    }
+
+    .curent-subheading {
+      font-size: 0.9rem;
+      margin: 8px 0 5px;
+    }
+
+    .curent-list {
+      padding-left: 16px;
+      gap: 5px;
+
+      li {
+        font-size: 0.9rem;
+        line-height: 1.4;
+      }
+    }
+
+    .curent-list-intro {
+      font-size: 0.9rem;
+    }
+
+    .curent-list-item-title {
+      font-size: 0.9rem;
+    }
+
+    .curent-list-item-description {
+      font-size: 0.9rem;
+    }
+
+    .curent-sublist {
+      padding-left: 14px;
+      margin: 4px 0 0;
+
+      li {
+        font-size: 0.9rem;
+      }
+    }
+  }
+}
+
+

@@ -49,7 +49,10 @@
 
 - **JavaScript** (React 19)
 
-### Aplicații și biblioteci
+### Aplicații
+- **Visual Studio Code**
+
+### Biblioteci
 
 | Tehnologie | Utilizare |
 |------------|-----------|
@@ -95,5 +98,3 @@ Aplicația rulează implicit la `http://localhost:5173`.
 ## Licență
 
 Lucrare originală, realizată cu softuri cu licență sau free. Nu promovează violența sau discriminarea.
-"# Comentarii-de-Bac-Cod-Sursa" 
-"# Comentarii-de-Bac-Cod-Sursa" 

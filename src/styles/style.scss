@@ -1,0 +1,52 @@
+@import './base.scss';
+@import './navbar.scss';
+@import './footer.scss';
+@import './scriitor.scss';
+@import './scriitori.scss';
+@import './desprenoi.scss';
+@import './opere.scss';
+@import "./opera.scss";
+@import './carti.scss';
+@import './index.scss';
+@import './scriitorChat.scss';
+@import './bookReader.scss';
+@import './videoclipuri.scss';
+@import './proiecte.scss';
+@import './curente.scss';
+@import './curenteWheel.scss';
+@import './tabs.scss';
+@import './login.scss';
+@import './admin.scss';
+@import './notifications.scss';
+@import './scrollToTop.scss';
+@import './ghidSubiect2.scss';
+@import './ghiduri.scss';
+
+.page-wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+  
+.main-content {
+    flex: 1;
+}
+
+
+.friend-name-hover {
+  opacity: 0.5;
+}
+
+[style*='cursor: pointer'][style*='width: 100px'][style*='height: 100px']:hover .friend-name-hover {
+  opacity: 0.9 !important;
+}
+
+/* Ascunde scroll-ul pentru modalul poeziei */
+.poem-modal-scroll {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.poem-modal-scroll::-webkit-scrollbar {
+  display: none;
+}

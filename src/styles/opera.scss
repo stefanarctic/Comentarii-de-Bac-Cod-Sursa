@@ -1,0 +1,3039 @@
+// Opera page styles
+
+// Fullscreen hero for opera page (scoped nesting)
+.opere-hero-full {
+  position: relative;
+  // width: calc(100vw - 85.58px) !important;
+  width: 100vw;
+  height: 100vh;
+  // height: calc(100vh - 85.58px) !important;
+  // padding-bottom: 85.58px !important;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  // margin-top: 85.58px;
+  flex: 0 0 100vw;
+  height: 100vh;
+  min-height: 540px;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .opere-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0.4) 40%, rgba(0, 0, 0, 0.75) 100%);
+  }
+
+  .opera-author-avatar {
+    position: absolute;
+    top: 190px;
+    // left: 170px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 125px;
+    height: 125px;
+    border-radius: 50%;
+    padding: 0;
+    border: 3px solid rgba(255, 255, 255, 0.85);
+    background: none;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+    overflow: hidden;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    z-index: 3;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: opacity 0.5s ease;
+    }
+
+    .avatar-overlay {
+      position: absolute;
+      inset: 0;
+      background: none;
+      transition: background 0.25s ease;
+    }
+
+    .avatar-label {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 10px;
+      padding: 8px 10px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: #fff;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+      background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.082) 100%);
+      opacity: 0;
+      transform: translateY(4px);
+      transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+
+    &:hover {
+      // transform: translateY(-2px) scale(1.03);
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
+      // box-shadow: 0 12px 32px rgb(0, 0, 0);
+      border-color: #ffd591;
+
+      .avatar-overlay {
+        background: none;
+      }
+
+      .avatar-label {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      // img { opacity: 90%; }
+    }
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  .opere-hero-content {
+    position: relative;
+    text-align: center;
+    color: #fff;
+    z-index: 1;
+    padding: 0 1.5rem;
+    padding-top: 70px;
+    max-width: 800px;
+
+    .opere-hero-title {
+      font-size: 3.2rem;
+      font-weight: 900;
+      letter-spacing: 0.04em;
+      text-shadow: 0 6px 24px rgba(0, 0, 0, 0.45);
+      margin: 80px 0 0.75rem 0;
+    }
+
+    .opere-hero-subtitle {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.92);
+      text-shadow: 0 4px 18px rgba(0, 0, 0, 0.45);
+      margin: 0 0 1rem 0;
+    }
+
+    .opere-hero-desc {
+      font-size: 1.05rem;
+      line-height: 1.7;
+      color: rgba(255, 255, 255, 0.92);
+      text-shadow: 0 4px 18px rgba(0, 0, 0, 0.4);
+      margin: 0 auto 1.25rem auto;
+      max-width: 720px;
+    }
+
+    .opere-hero-meta {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 1rem;
+
+      .opera-category,
+      .opera-canonical {
+        padding: 0.5rem 1rem;
+        border-radius: 20px;
+        font-size: 0.9rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      .opera-category {
+        background: rgba(255, 255, 255, 0.2);
+        color: white;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+      }
+
+      .opera-canonical {
+        background: rgba(255, 215, 0, 0.9);
+        color: #333;
+        border: 1px solid rgba(255, 215, 0, 1);
+      }
+    }
+  }
+
+  .opere-scroll-cue {
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    background: transparent;
+    border: none;
+    color: rgba(255, 255, 255, 0.35);
+    z-index: 2;
+    transition: transform 0.25s ease, color 0.25s ease;
+    animation: bounce-bottom 2s infinite;
+    cursor: pointer;
+    outline: none;
+
+    &:focus {
+      outline: none;
+    }
+
+    svg {
+      opacity: 0.55;
+    }
+
+    &:hover {
+      transform: translateX(-50%) translateY(-2px);
+      color: rgba(255, 255, 255, 0.6);
+    }
+  }
+}
+
+// Persistent back button for Opera
+.opera-back-btn {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 50;
+  transition: top 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  display: inline-flex;
+  // background-color: red !important;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  color: #fff;
+  background: rgba(0, 0, 0, 0.35);
+  backdrop-filter: saturate(120%) blur(6px);
+  -webkit-backdrop-filter: saturate(120%) blur(6px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+  outline: none;
+  &:focus{
+    outline: none;
+  }
+
+  .back-icon {
+    display: inline-flex;
+  }
+
+  .back-text {
+    font-weight: 700;
+    letter-spacing: 0.3px;
+  }
+
+  &:hover {
+    transform: translateY(-1px);
+    background: rgba(0, 0, 0, 0.5);
+    border-color: #ffd591;
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+/* Shift back button when tabs are revealed */
+body.tabs-revealed .opera-back-btn {
+  top: calc(20px + var(--tabs-bar-height, 46px));
+}
+
+@media (max-width: 900px) {
+  .opera-back-btn {
+    top: 72px;
+    left: 16px;
+    padding: 8px 12px;
+    gap: 8px;
+  }
+  
+  body.tabs-revealed .opera-back-btn {
+    top: calc(72px + var(--tabs-bar-height, 46px));
+  }
+}
+
+.dark-theme {
+  .opera-back-btn {
+    border-color: rgba(255, 213, 145, 0.8);
+    background: rgba(0, 0, 0, 0.4);
+    color: #ffd591;
+
+    &:hover {
+      background: rgba(0, 0, 0, 0.6);
+      border-color: #ffb366;
+    }
+  }
+}
+
+@keyframes bounce-bottom {
+
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateX(-50%) translateY(0);
+  }
+
+  40% {
+    transform: translateX(-50%) translateY(-12px);
+  }
+
+  60% {
+    transform: translateX(-50%) translateY(-6px);
+  }
+}
+
+@keyframes operaSlideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(24px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes operaSlideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-24px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scrollCuePulse {
+  0%, 100% {
+    opacity: 0.4;
+    transform: translateY(-50%) translateX(0);
+  }
+  50% {
+    opacity: 0.8;
+    transform: translateY(-50%) translateX(4px);
+  }
+}
+
+@media (max-width: 900px) {
+  .opere-hero-full {
+    .opera-author-avatar {
+      width: 68px;
+      height: 68px;
+      top: 16px;
+      left: 88px;
+      border-width: 2px;
+    }
+
+    .opere-hero-content {
+      .opere-hero-title {
+        font-size: 2.2rem;
+      }
+
+      .opere-hero-subtitle {
+        font-size: 1rem;
+      }
+
+      .opere-hero-meta {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+      }
+    }
+  }
+}
+
+// On very small screens, compact the back button by hiding text
+@media (max-width: 480px) {
+  .opera-back-btn .back-text {
+    display: none;
+  }
+}
+
+// Opera content container (scoped nesting)
+.opera-content-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+
+  .opera-tabs {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+    padding: 8px 10px;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: rgba(255, 250, 241, 0.9);
+    border: 1px solid #f1e2c8;
+    border-radius: 16px;
+    box-shadow: 0 6px 24px rgba(124, 79, 43, 0.08);
+    backdrop-filter: blur(6px) saturate(120%);
+    -webkit-backdrop-filter: blur(6px) saturate(120%);
+
+    .theme-toggle {
+      padding: 0.5rem;
+      border: 1px solid transparent;
+      background: transparent;
+      border-radius: 8px;
+      font-size: 1.3rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      flex-shrink: 0;
+      min-width: 40px;
+      min-height: 40px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      outline: none;
+
+      &:focus {
+        outline: none;
+        border-color: #a97c50;
+      }
+
+      &:hover {
+        background: rgba(169, 124, 80, 0.1);
+      }
+    }
+
+    .opera-tabs-left {
+      display: flex;
+      flex-wrap: nowrap;
+      gap: 0.5rem;
+      overflow-x: auto;
+      overflow-y: hidden;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      -webkit-overflow-scrolling: touch;
+      scroll-behavior: smooth;
+      position: relative;
+      flex: 1 1 auto;
+      min-width: 0;
+      
+      &::-webkit-scrollbar {
+        display: none;
+      }
+    }
+
+    .opera-tab {
+      padding: 0.8rem 1.2rem;
+      border: 1px solid transparent;
+      background: transparent;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #6b5b4b;
+      cursor: pointer;
+      border-radius: 12px;
+      transition: all 0.25s ease;
+      position: relative;
+      outline: none;
+      flex-shrink: 0;
+      white-space: nowrap;
+
+      &:hover {
+        color: #a97c50;
+        background: rgba(169, 124, 80, 0.12);
+        border-color: #e8d7bd;
+        box-shadow: 0 6px 16px rgba(124, 79, 43, 0.12);
+      }
+
+      &.active {
+        color: #a97c50;
+        background: linear-gradient(180deg, #ffffff 0%, #f8efe3 100%);
+        border-color: #e8d7bd;
+        box-shadow: 0 6px 18px rgba(124, 79, 43, 0.14);
+      }
+    }
+  }
+
+  // // Comment dropdowns (above tabs)
+  // .opera-comment-dropdowns {
+  //   display: grid;
+  //   grid-template-columns: repeat(4, minmax(0, 1fr));
+  //   gap: 0.5rem;
+  //   margin-bottom: 1rem;
+
+  //   // Custom select component
+  //   .opera-custom-select {
+  //     position: relative;
+  //   }
+
+  //   .ocs-button {
+  //     width: 100%;
+  //     padding: 0.75rem 1rem;
+  //     border-radius: 12px;
+  //     border: 1px solid #f1e2c8;
+  //     background: linear-gradient(180deg, #ffffff 0%, #f8efe3 100%);
+  //     color: #6b5b4b;
+  //     font-weight: 700;
+  //     display: inline-flex;
+  //     align-items: center;
+  //     justify-content: space-between;
+  //     gap: 0.75rem;
+  //     outline: none;
+  //     box-shadow: 0 6px 14px rgba(124, 79, 43, 0.08);
+  //     cursor: pointer;
+  //     transition: background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, color 0.2s ease, transform 0.08s ease;
+      
+
+  //     &:hover {
+  //       border-color: #e8d7bd;
+  //       box-shadow: 0 8px 18px rgba(124, 79, 43, 0.12);
+  //       color: #8b6b42;
+  //     }
+
+  //     &:focus {
+  //       border-color: #c28c52;
+  //       box-shadow: 0 0 0 3px rgba(194, 140, 82, 0.2);
+  //     }
+
+  //     &.open {
+  //       border-color: #c28c52;
+  //       box-shadow: 0 0 0 3px rgba(194, 140, 82, 0.2);
+  //     }
+  //   }
+
+  //   .ocs-label {
+  //     flex: 1 1 auto;
+  //     text-align: left;
+  //     white-space: nowrap;
+  //     overflow: hidden;
+  //     text-overflow: ellipsis;
+  //     font-weight: 600;
+  //     display: flex;
+  //     align-items: center;
+  //     justify-content: center;
+  //   }
+
+  //   .ocs-label.selected {
+  //     color: #8b6b42;
+  //   }
+
+  //   .ocs-caret {
+  //     width: 18px;
+  //     height: 18px;
+  //     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%236b5b4b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  //     background-size: 18px 18px;
+  //     background-repeat: no-repeat;
+  //     background-position: center;
+  //     flex: 0 0 18px;
+  //   }
+
+  //   .ocs-panel {
+  //     position: absolute;
+  //     top: calc(100% + 6px);
+  //     left: 0;
+  //     right: 0;
+  //     background: #fffdf7;
+  //     border: 1px solid #f1e2c8;
+  //     border-radius: 12px;
+  //     box-shadow: 0 12px 28px rgba(124, 79, 43, 0.18);
+  //     padding: 6px;
+  //     z-index: 20;
+  //   }
+
+  //   .ocs-option {
+  //     width: 100%;
+  //     text-align: left;
+  //     background: transparent;
+  //     border: none;
+  //     border-radius: 10px;
+  //     padding: 0.65rem 0.75rem;
+  //     color: #6b5b4b;
+  //     font-weight: 600;
+  //     cursor: pointer;
+  //     transition: background 0.15s ease, color 0.15s ease, transform 0.08s ease;
+  //     outline: none;
+  //     display: flex;
+  //     align-items: center;
+  //     justify-content: center;
+  
+  //     &:focus{
+  //       outline: none;
+  //     }
+
+  //     &:hover {
+  //       background: rgba(169, 124, 80, 0.12);
+  //       color: #8b6b42;
+  //     }
+
+  //     &.active {
+  //       background: linear-gradient(180deg, #ffffff 0%, #f8efe3 100%);
+  //       border: 1px solid #e8d7bd;
+  //     }
+  //   }
+  // }
+
+  .opera-tab-content-wrapper {
+    min-height: 400px;
+    background: #fff;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    border: 1px solid #f0f0f0;
+
+    .opera-tab-animated {
+      animation-duration: 300ms;
+      animation-timing-function: ease;
+
+      &.slide-in-right {
+        animation-name: operaSlideInRight;
+      }
+
+      &.slide-in-left {
+        animation-name: operaSlideInLeft;
+      }
+    }
+
+    .opera-tab-content {
+      h3 {
+        color: #a97c50;
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+
+        &:before {
+          content: "";
+          width: 4px;
+          height: 24px;
+          background: #a97c50;
+          border-radius: 2px;
+        }
+      }
+
+      p {
+        line-height: 1.8;
+        margin-bottom: 1.5rem;
+        color: #333;
+        font-size: 1.05rem;
+      }
+
+      ul {
+        list-style: none;
+        padding: 0;
+
+        li {
+          padding: 0.8rem 0;
+          border-bottom: 1px solid #f0f0f0;
+          position: relative;
+          padding-left: 2rem;
+          font-size: 1.05rem;
+          color: #444;
+          transition: all 0.2s ease;
+
+          &:hover {
+            li {
+              padding-left: 5rem;
+            }
+            // background: rgba(169, 124, 80, 0.05);
+            padding-left: 2.2rem;
+            cursor: pointer;
+          }
+
+          &:before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0.95rem;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #a97c50;
+            box-shadow: 0 0 0 3px rgba(169, 124, 80, 0.15);
+          }
+
+          &:last-child {
+            border-bottom: none;
+          }
+        }
+      }
+
+      // Content sections
+      .opera-description,
+      .opera-themes,
+      .opera-characters,
+      .opera-analysis,
+      .opera-comment-content,
+      .opera-quotes {
+        margin-bottom: 2.5rem;
+        padding: 1.5rem;
+        background: #fafafa;
+        border-radius: 8px;
+        border-left: 4px solid #a97c50;
+        transition: background 0.25s ease, box-shadow 0.25s ease;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+
+        &:hover {
+          background: #f5efe7;
+          box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+        }
+      }
+
+      // Rezumat styles
+      .opera-rezumat {
+        .rezumat-title {
+          font-size: 2.5rem;
+          font-weight: 700;
+          color: #a97c50;
+          margin-bottom: 2.5rem;
+          text-align: center;
+          padding-bottom: 1rem;
+          border-bottom: 3px solid #a97c50;
+        }
+
+        .rezumat-section {
+          margin-bottom: 3rem;
+          padding: 2rem;
+          background: #fafafa;
+          border-radius: 12px;
+          border-left: 5px solid #a97c50;
+          transition: all 0.3s ease;
+
+          &:last-child {
+            margin-bottom: 0;
+          }
+
+          &:hover {
+            background: #f5efe7;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+            transform: translateY(-2px);
+          }
+
+          .rezumat-section-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #8b6b42;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid #e8d7bd;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+
+            &:before {
+              content: "";
+              width: 6px;
+              height: 28px;
+              background: #a97c50;
+              border-radius: 3px;
+            }
+          }
+
+          .rezumat-subsection {
+            margin-bottom: 2rem;
+
+            &:last-child {
+              margin-bottom: 0;
+            }
+          }
+
+          .rezumat-subtitle {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #8b6b42;
+            margin: 2rem 0 1.25rem 0;
+            padding-bottom: 0.75rem;
+            // border-bottom: 2px solid #e8d7bd;
+
+            &:first-child {
+              margin-top: 0;
+            }
+          }
+
+          .rezumat-text {
+            line-height: 1.9;
+            color: #333;
+            font-size: 1.1rem;
+            white-space: pre-line;
+            margin: 0 0 1rem 0;
+          }
+
+          .rezumat-list {
+            list-style-type: disc;
+            padding-left: 2rem;
+            margin: 1.5rem 0;
+            line-height: 1.9;
+
+            .rezumat-list-item {
+              color: #333;
+              font-size: 1.1rem;
+              margin-bottom: 0.75rem;
+              padding-left: 0.5rem;
+              border-bottom: none;
+              padding-top: 0;
+              padding-bottom: 0;
+
+              &:before {
+                display: none;
+              }
+
+              &:last-child {
+                margin-bottom: 0;
+              }
+            }
+          }
+
+          .rezumat-versuri {
+            margin: 1.5rem 0;
+            padding-left: 2rem;
+            
+            .rezumat-vers {
+              font-style: italic;
+              color: #555;
+              font-size: 1.05rem;
+              line-height: 1.8;
+              margin: 0.5rem 0;
+              padding-left: 0;
+              
+              &:first-child {
+                margin-top: 0;
+              }
+              
+              &:last-child {
+                margin-bottom: 0;
+              }
+            }
+          }
+        }
+      }
+
+      // Card-like list items pentru Teme principale (păstrat ca înainte)
+      .opera-themes ul li {
+        background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        margin: 0.5rem 0;
+        padding: 1rem 1.25rem;
+        border-left: 4px solid #a97c50;
+        border-radius: 0 12px 12px 0;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease, border-color 0.25s ease;
+        border-bottom: none;
+      }
+
+      .opera-themes ul li:before {
+        display: none;
+      }
+
+      .opera-themes ul li:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 26px rgba(0, 0, 0, 0.12);
+        background: linear-gradient(135deg, #ffffff 0%, #f1f3f5 100%);
+        border-left-color: #c28c52;
+      }
+
+      // Card-like list items pentru Personaje principale (container pentru accordion)
+      .opera-characters ul li {
+        background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        margin: 0.5rem 0;
+        padding: 0;
+        border-left: 4px solid #a97c50;
+        border-radius: 0 12px 12px 0;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease, border-color 0.25s ease;
+        border-bottom: none;
+      }
+
+      .opera-characters ul li:before {
+        display: none;
+      }
+
+      .opera-characters ul li:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 26px rgba(0, 0, 0, 0.12);
+        background: linear-gradient(135deg, #ffffff 0%, #f1f3f5 100%);
+        border-left-color: #c28c52;
+      }
+
+      .opera-characters {
+        ul {
+          list-style: none;
+          margin: 0;
+          padding: 0;
+        }
+
+        .opera-character-item {
+          cursor: pointer;
+          overflow: hidden;
+
+          &.is-active {
+            .opera-character-button {
+              border-bottom-color: rgba(0, 0, 0, 0.04);
+            }
+          }
+        }
+
+        .opera-character-button {
+          width: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 1rem 1.25rem;
+          background: transparent;
+          border: none;
+          outline: none;
+          font: inherit;
+          text-align: left;
+          color: #333;
+
+          .opera-character-name {
+            font-weight: 600;
+          }
+
+          .opera-character-toggle {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #a97c50;
+            margin-left: 1rem;
+          }
+        }
+
+        .opera-character-description {
+          padding: 0 1.25rem 1rem 1.25rem;
+          border-top: 1px solid rgba(0, 0, 0, 0.04);
+          font-size: 0.98rem;
+          line-height: 1.7;
+          color: #444;
+          background: linear-gradient(135deg, #ffffff 0%, #f7f3ec 100%);
+        }
+      }
+
+      // Simboluri custom cards
+      .opera-symbols-list {
+        list-style: none;
+        margin: 1.25rem 0 0 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 1.25rem;
+        position: relative;
+
+        &:before {
+          content: "";
+          position: absolute;
+          left: 16px;
+          top: 0;
+          bottom: 8px;
+          width: 3px;
+          background: linear-gradient(180deg, rgba(169, 124, 80, 0.55), rgba(194, 140, 82, 0.08));
+        }
+
+        .opera-symbol-item {
+          position: relative;
+          padding: 1.5rem 1.5rem 1.5rem 3.4rem;
+          background: linear-gradient(135deg, #fffdf9 0%, #f8f1e7 100%);
+          border-radius: 12px;
+          border: 1px solid rgba(169, 124, 80, 0.18);
+          box-shadow: 0 12px 30px rgba(123, 84, 52, 0.08);
+          transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+
+          &:before {
+            content: "";
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: #c28c52;
+            left: 9px;
+            top: 26px;
+            box-shadow: 0 0 0 6px rgba(194, 140, 82, 0.22);
+          }
+
+          h4 {
+            margin: 0 0 0.5rem 0;
+            font-size: 1.2rem;
+            color: #7a5433;
+            font-weight: 700;
+          }
+
+          p {
+            margin: 0;
+            color: #4e4033;
+            line-height: 1.7;
+            font-size: 1rem;
+          }
+
+          &:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 18px 38px rgba(123, 84, 52, 0.12);
+            border-color: rgba(194, 140, 82, 0.35);
+          }
+        }
+      }
+
+      .opera-title-points {
+        list-style: none;
+        margin: 1.25rem 0 0 0;
+        padding: 1.25rem 1.5rem;
+        border: 1px solid rgba(169, 124, 80, 0.24);
+        border-radius: 18px;
+        background: linear-gradient(145deg, #fffefb 0%, #fbf3ea 100%);
+        box-shadow: 0 14px 28px rgba(124, 79, 43, 0.08);
+        position: relative;
+
+        li {
+          position: relative;
+          padding: 1rem 0 1rem 2.5rem;
+          margin: 0;
+          font-size: 1.02rem;
+          line-height: 1.65;
+          color: #4b3828;
+          border-bottom: none;
+
+          &:not(:last-child) {
+            border-bottom: 1px solid rgba(169, 124, 80, 0.12);
+          }
+
+          &:before {
+            content: "";
+            position: absolute;
+            left: 0.5rem;
+            top: 1.25rem;
+            width: 11px;
+            height: 11px;
+            border-radius: 50%;
+            background: #c28c52;
+            box-shadow: 0 0 0 4px rgba(194, 140, 82, 0.15);
+          }
+
+          // &:not(:last-child)::after {
+          //   content: "";
+          //   position: absolute;
+          //   left: 1rem;
+          //   top: 1.8rem;
+          //   width: 2px;
+          //   height: calc(100% - 1.8rem);
+          //   background: linear-gradient(180deg, rgba(194, 140, 82, 0.25), rgba(194, 140, 82, 0));
+          // }
+
+          &:last-child {
+            padding-bottom: 0.4rem;
+          }
+        }
+
+        &:before,
+        &:after {
+          content: "";
+          position: absolute;
+          inset: 6px;
+          border-radius: 14px;
+          pointer-events: none;
+        }
+
+        &:before {
+          background: linear-gradient(145deg, rgba(255, 255, 255, 0.65), rgba(255, 255, 255, 0));
+        }
+
+        &:after {
+          border: 1px dashed rgba(169, 124, 80, 0.15);
+        }
+
+        & + p {
+          margin-top: 1.5rem;
+        }
+      }
+
+      // Quotes styling
+      .quotes-list {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+
+      .opera-quote {
+        background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        padding: 2rem;
+        border-left: 4px solid #a97c50;
+        margin: 0;
+        font-style: italic;
+        font-size: 1.1rem;
+        line-height: 1.7;
+        border-radius: 0 12px 12px 0;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        position: relative;
+        transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease, border-color 0.25s ease;
+
+        &:before {
+          content: "\201C";
+          font-size: 3rem;
+          color: #a97c50;
+          position: absolute;
+          top: -12px;
+          left: 12px;
+          opacity: 0.25;
+          font-family: Georgia, Cambria, "Times New Roman", Times, serif;
+        }
+
+        &:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 10px 26px rgba(0, 0, 0, 0.12);
+          background: linear-gradient(135deg, #ffffff 0%, #f1f3f5 100%);
+          border-left-color: #c28c52;
+        }
+      }
+    }
+  }
+
+  // Video embed wrapper
+  .opera-video-wrapper {
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.12);
+    border: 1px solid #eee;
+    outline: none;
+    &:focus{
+      outline: none;
+    }
+
+    iframe,
+    video,
+    embed {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  // Quiz styles
+  .quiz-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .quiz-item {
+    background: #fafafa;
+    border: 1px solid #eee;
+    border-radius: 10px;
+    padding: 1rem;
+  }
+
+  .quiz-question {
+    font-weight: 700;
+    color: #6b5b4b;
+    margin-bottom: 0.75rem;
+  }
+
+  .quiz-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .quiz-option {
+    padding: 0.6rem 1rem;
+    border-radius: 999px;
+    border: 1px solid #e8d7bd;
+    background: #fff;
+    color: #6b5b4b;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    outline: none;
+    &:focus{
+      outline: none;
+    }
+  }
+
+  .quiz-option:hover {
+    background: rgba(169, 124, 80, 0.08);
+  }
+
+  .quiz-option.chosen {
+    border-color: #a97c50;
+    background: rgba(169, 124, 80, 0.12);
+    color: #8b6b42;
+  }
+
+  .quiz-option.correct {
+    border-color: #43aa8b;
+    background: rgba(67, 170, 139, 0.12);
+    color: #2a6e5c;
+  }
+
+  .quiz-option.wrong {
+    border-color: #ff595e;
+    background: rgba(255, 89, 94, 0.12);
+    color: #8a1c1f;
+  }
+
+  .quiz-actions {
+    margin-top: 0.5rem;
+  }
+
+  .quiz-submit {
+    padding: 0.75rem 1.5rem;
+    border-radius: 999px;
+    border: none;
+    background: linear-gradient(135deg, #a97c50 0%, #8b6b42 100%);
+    color: #fff;
+    font-weight: 700;
+    box-shadow: 0 6px 18px rgba(169, 124, 80, 0.25);
+    cursor: pointer;
+    outline: none;
+    &:focus{
+      outline: none;
+    }
+  }
+
+  .quiz-result {
+    font-weight: 800;
+    color: #8b6b42;
+  }
+
+  .quiz-explanation {
+    margin-top: 0.75rem;
+    padding: 0.75rem;
+    background: rgba(67, 170, 139, 0.08);
+    border-left: 3px solid #43aa8b;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    color: #2a6e5c;
+    line-height: 1.4;
+  }
+
+  // Actions section
+  .opera-actions {
+    margin-top: 3rem;
+    text-align: center;
+    padding: 2rem;
+    background: none !important;
+    // border-radius: 12px;
+    // border: 1px solid #e0e0e0;
+    .opera-read-btn {
+      background: linear-gradient(135deg, #a97c50 0%, #8b6b42 100%);
+      color: white;
+      border: none;
+      padding: 1.2rem 2.5rem;
+      border-radius: 50px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.8rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(169, 124, 80, 0.3);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      outline: none;
+      &:focus{
+        outline: none;
+      }
+
+      &:hover {
+        background: linear-gradient(135deg, #8b6b42 0%, #6d5233 100%);
+        transform: translateY(-3px);
+        box-shadow: 0 8px 25px rgba(169, 124, 80, 0.4);
+      }
+
+      &:active {
+        transform: translateY(-1px);
+      }
+
+      svg {
+        width: 20px;
+        height: 20px;
+      }
+    }
+  }
+
+  // No details and missing content
+  .opera-no-details,
+  .opera-comment-missing {
+    text-align: center;
+    padding: 4rem 2rem;
+    color: #666;
+    background: #f8f9fa;
+    border-radius: 12px;
+    border: 2px dashed #ddd;
+
+    h3 {
+      color: #a97c50;
+      margin-bottom: 1rem;
+      font-size: 1.8rem;
+    }
+
+    p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+  }
+
+  // Comment frame
+  .opera-comment-frame {
+    width: 100%;
+    height: 600px;
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    background: #fff;
+  }
+}
+
+// Responsive design - Tablet (769px - 1024px)
+@media (max-width: 1024px) and (min-width: 769px) {
+  .opere-hero-full {
+    .opere-hero-content {
+      padding: 0 2rem;
+      padding-top: 60px;
+      max-width: 700px;
+
+      .opere-hero-title {
+        font-size: 2.8rem;
+        margin: 70px 0 0.75rem 0;
+      }
+
+      .opere-hero-subtitle {
+        font-size: 1.15rem;
+      }
+
+      .opere-hero-desc {
+        font-size: 1rem;
+        max-width: 650px;
+      }
+    }
+
+    .opera-author-avatar {
+      width: 110px;
+      height: 110px;
+      top: 160px;
+    }
+
+    .opere-scroll-cue {
+      width: 140px;
+      height: 140px;
+    }
+  }
+
+  .opera-content-container {
+    padding: 1.5rem;
+
+    .opera-tabs {
+      padding: 6px 8px;
+
+      .opera-tab {
+        padding: 0.75rem 1rem;
+        font-size: 0.95rem;
+      }
+    }
+
+    .opera-tab-content-wrapper {
+      padding: 1.75rem;
+
+      .opera-tab-content {
+        h3 {
+          font-size: 1.4rem;
+        }
+
+        p {
+          font-size: 1.02rem;
+        }
+      }
+    }
+  }
+}
+
+// Responsive design - Small Tablet & Large Mobile (481px - 768px)
+@media (max-width: 768px) {
+  .opere-hero-full {
+    max-height: 350px;
+    margin-top: -20%;
+
+    .opera-author-avatar {
+      width: 90px;
+      height: 90px;
+      top: 120px;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 2.5px;
+    }
+
+    .opere-hero-content {
+      padding: 0 1.25rem;
+      padding-top: 50px;
+      max-width: 100%;
+
+      .opere-hero-title {
+        font-size: 2rem;
+        margin: 60px 0 0.5rem 0;
+      }
+
+      .opere-hero-subtitle {
+        font-size: 1.2rem;
+        margin: 0 0 0.75rem 0;
+      }
+
+      .opere-hero-desc {
+        font-size: 1.2rem;
+        line-height: 1.6;
+        margin: 0 auto 1rem auto;
+        max-width: 100%;
+      }
+    }
+
+    .opere-scroll-cue {
+      width: 120px;
+      height: 120px;
+      bottom: 10px;
+      display: none;
+
+      svg {
+        width: 100px;
+        height: 100px;
+      }
+    }
+  }
+
+  .opera-content-container {
+    padding: 1rem;
+
+    .opera-tabs {
+      flex-direction: row;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 6px 8px;
+      margin-bottom: 1.5rem;
+
+      .opera-tabs-left {
+        flex: 1 1 auto;
+        min-width: 0;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .theme-toggle {
+        margin-left: 0.5rem;
+        flex-shrink: 0;
+        padding: 0.5rem;
+        font-size: 1.2rem;
+      }
+
+      // Scroll cue overlay - gradient fade-out și săgeată (doar pe mobile/tablet)
+      &::before {
+        content: '';
+        position: absolute;
+        right: 45px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 20px;
+        height: 20px;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23a97c50' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='9 18 15 12 9 6'%3E%3C/polyline%3E%3C/svg%3E");
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        pointer-events: none;
+        z-index: 2;
+        opacity: 0.6;
+        animation: scrollCuePulse 2s ease-in-out infinite;
+      }
+
+      // Gradient fade-out la capătul drept
+      &::after {
+        content: '';
+        position: absolute;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        width: 50px;
+        background: linear-gradient(to left, rgba(255, 250, 241, 0.98) 0%, rgba(255, 250, 241, 0) 100%);
+        pointer-events: none;
+        z-index: 1;
+      }
+    }
+
+    // Dark theme scroll cue pentru tablet/mobile
+    .dark-theme & {
+      .opera-tabs {
+        &::before {
+          background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23ffd591' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='9 18 15 12 9 6'%3E%3C/polyline%3E%3C/svg%3E");
+          opacity: 0.7;
+        }
+
+        &::after {
+          background: linear-gradient(to left, rgba(61, 40, 21, 0.98) 0%, rgba(61, 40, 21, 0) 100%);
+        }
+      }
+    }
+
+    .opera-tabs .opera-tab {
+      padding: 0.7rem 1rem;
+      font-size: 0.9rem;
+      white-space: nowrap;
+    }
+
+    .opera-comment-dropdowns {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.4rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .opera-tab-content-wrapper {
+      padding: 1.25rem;
+      border-radius: 10px;
+
+      .opera-tab-content {
+        h3 {
+          font-size: 1.25rem;
+          margin-bottom: 0.875rem;
+
+          &:before {
+            width: 3px;
+            height: 20px;
+          }
+        }
+
+        p {
+          font-size: 0.95rem;
+          line-height: 1.7;
+          margin-bottom: 1.25rem;
+        }
+
+        ul li {
+          font-size: 0.95rem;
+          padding: 0.6rem 0;
+          padding-left: 1.75rem;
+
+          &:before {
+            width: 8px;
+            height: 8px;
+            top: 0.85rem;
+          }
+        }
+
+        .opera-description,
+        .opera-themes,
+        .opera-characters,
+        .opera-analysis,
+        .opera-comment-content,
+        .opera-quotes {
+          margin-bottom: 2rem;
+          padding: 1.25rem;
+          border-radius: 8px;
+        }
+
+        .opera-quote {
+          padding: 1.25rem;
+          font-size: 0.95rem;
+          line-height: 1.6;
+
+          &:before {
+            font-size: 2.5rem;
+            top: -8px;
+            left: 10px;
+          }
+        }
+
+        .opera-curent-link {
+          padding: 0.875rem 1.75rem;
+          font-size: 1.1rem;
+          margin-top: 1.5rem;
+        }
+
+        .opera-rezumat {
+          .rezumat-title {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            padding-bottom: 0.875rem;
+          }
+
+          .rezumat-section {
+            margin-bottom: 2.5rem;
+            padding: 1.5rem;
+            border-radius: 10px;
+
+            .rezumat-section-title {
+              font-size: 1.5rem;
+              margin-bottom: 1.25rem;
+              padding-bottom: 0.625rem;
+
+              &:before {
+                width: 5px;
+                height: 24px;
+              }
+            }
+
+            .rezumat-subtitle {
+              font-size: 1.15rem;
+              margin: 1.5rem 0 1rem 0;
+            }
+
+            .rezumat-text {
+              font-size: 1rem;
+              line-height: 1.8;
+            }
+
+            .rezumat-list {
+              padding-left: 1.75rem;
+              margin: 1.25rem 0;
+
+              .rezumat-list-item {
+                font-size: 1rem;
+                margin-bottom: 0.625rem;
+              }
+            }
+
+            .rezumat-versuri {
+              padding-left: 1.5rem;
+              margin: 1.25rem 0;
+
+              .rezumat-vers {
+                font-size: 1rem;
+                line-height: 1.7;
+              }
+            }
+          }
+        }
+
+        .opera-themes ul li {
+          padding: 0.875rem 1rem;
+          margin: 0.4rem 0;
+        }
+
+        .opera-characters ul li {
+          margin: 0.4rem 0;
+
+          .opera-character-button {
+            padding: 0.875rem 1rem;
+
+            .opera-character-name {
+              font-size: 0.95rem;
+            }
+
+            .opera-character-toggle {
+              font-size: 1.1rem;
+            }
+          }
+
+          .opera-character-description {
+            padding: 0 1rem 0.875rem 1rem;
+            font-size: 0.92rem;
+          }
+        }
+
+        .opera-symbols-list {
+          gap: 1rem;
+
+          .opera-symbol-item {
+            padding: 1.25rem 1.25rem 1.25rem 3rem;
+
+            &:before {
+              left: 8px;
+              top: 22px;
+              width: 14px;
+              height: 14px;
+            }
+
+            h4 {
+              font-size: 1.1rem;
+              margin-bottom: 0.4rem;
+            }
+
+            p {
+              font-size: 0.95rem;
+            }
+          }
+        }
+
+        .opera-title-points {
+          padding: 1rem 1.25rem;
+
+          li {
+            padding: 0.875rem 0 0.875rem 2.25rem;
+            font-size: 0.98rem;
+
+            &:before {
+              left: 0.4rem;
+              top: 1.1rem;
+              width: 10px;
+              height: 10px;
+            }
+          }
+        }
+      }
+    }
+
+    .opera-actions {
+      margin-top: 2rem;
+      padding: 1.5rem;
+
+      .opera-read-btn {
+        padding: 1rem 2rem;
+        font-size: 0.95rem;
+        border-radius: 45px;
+      }
+    }
+  }
+
+  .scroll-to-top-btn {
+    right: 16px;
+    bottom: 16px;
+    width: 50px;
+    height: 50px;
+
+    svg {
+      width: 24px;
+      height: 24px;
+    }
+  }
+}
+
+// Responsive design - Mobile (320px - 480px)
+@media (max-width: 480px) {
+  .opere-hero-full {
+    max-height: 350px;
+    margin-top: -20%;
+
+    .opera-author-avatar {
+      width: 90px;
+      height: 90px;
+      top: 90px;
+      border-width: 2px;
+    }
+
+    .opere-hero-content {
+      padding: 0 1rem;
+      padding-top: 60px;
+
+      .opere-hero-title {
+        font-size: 1.75rem;
+        margin: 50px 0 0.4rem 0;
+        letter-spacing: 0.02em;
+      }
+
+      .opere-hero-subtitle {
+        font-size: 1.2rem;
+        margin: 0 0 0.625rem 0;
+      }
+
+      .opere-hero-desc {
+        font-size: 1rem;
+        line-height: 1.55;
+        margin: 0 auto 0.875rem auto;
+      }
+    }
+
+    .opere-scroll-cue {
+      width: 100px;
+      height: 100px;
+      bottom: 8px;
+      display: none;
+
+      svg {
+        width: 80px;
+        height: 80px;
+      }
+    }
+  }
+
+  .opera-back-btn {
+    top: 12px;
+    left: 12px;
+    padding: 8px 12px;
+    gap: 6px;
+    font-size: 0.875rem;
+
+    .back-icon svg {
+      width: 18px;
+      height: 18px;
+    }
+  }
+
+  .opera-content-container {
+    padding: 0.75rem;
+
+    .opera-tabs {
+      padding: 5px 6px;
+      margin-bottom: 1.25rem;
+      border-radius: 12px;
+
+      .opera-tabs-left {
+        gap: 0.4rem;
+      }
+
+      .theme-toggle {
+        margin-left: 0.4rem;
+        padding: 0.4rem;
+        font-size: 1.1rem;
+      }
+
+      // Scroll cue ajustat pentru mobile
+      &::before {
+        content: '';
+        position: absolute;
+        right: 40px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 18px;
+        height: 18px;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23a97c50' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='9 18 15 12 9 6'%3E%3C/polyline%3E%3C/svg%3E");
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        pointer-events: none;
+        z-index: 2;
+        opacity: 0.6;
+        animation: scrollCuePulse 2s ease-in-out infinite;
+      }
+
+      &::after {
+        content: '';
+        position: absolute;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        width: 45px;
+        background: linear-gradient(to left, rgba(255, 250, 241, 0.98) 0%, rgba(255, 250, 241, 0) 100%);
+        pointer-events: none;
+        z-index: 1;
+      }
+    }
+
+    // Dark theme scroll cue pentru mobile
+    .dark-theme & {
+      .opera-tabs {
+        &::before {
+          background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23ffd591' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='9 18 15 12 9 6'%3E%3C/polyline%3E%3C/svg%3E");
+          opacity: 0.7;
+        }
+
+        &::after {
+          background: linear-gradient(to left, rgba(61, 40, 21, 0.98) 0%, rgba(61, 40, 21, 0) 100%);
+        }
+      }
+    }
+
+    .opera-tabs .opera-tab {
+      padding: 0.6rem 0.875rem;
+      font-size: 0.85rem;
+      border-radius: 10px;
+    }
+
+    .opera-comment-dropdowns {
+      grid-template-columns: 1fr;
+      gap: 0.5rem;
+    }
+
+    .opera-tab-content-wrapper {
+      padding: 1rem;
+      border-radius: 10px;
+
+      .opera-tab-content {
+        h3 {
+          font-size: 1.15rem;
+          margin-bottom: 0.75rem;
+
+          &:before {
+            width: 3px;
+            height: 18px;
+          }
+        }
+
+        p {
+          font-size: 0.9rem;
+          line-height: 1.65;
+          margin-bottom: 1rem;
+        }
+
+        ul li {
+          font-size: 0.9rem;
+          padding: 0.5rem 0;
+          padding-left: 1.5rem;
+
+          &:before {
+            width: 7px;
+            height: 7px;
+            top: 0.75rem;
+          }
+        }
+
+        .opera-description,
+        .opera-themes,
+        .opera-characters,
+        .opera-analysis,
+        .opera-comment-content,
+        .opera-quotes {
+          margin-bottom: 1.75rem;
+          padding: 1rem;
+          border-radius: 8px;
+          border-left-width: 3px;
+        }
+
+        .opera-quote {
+          padding: 1rem;
+          font-size: 0.9rem;
+          line-height: 1.55;
+          border-left-width: 3px;
+
+          &:before {
+            font-size: 2rem;
+            top: -6px;
+            left: 8px;
+          }
+        }
+
+        .opera-curent-link {
+          padding: 0.75rem 1.5rem;
+          font-size: 1rem;
+          margin-top: 1.25rem;
+          border-radius: 4rem;
+        }
+
+        .opera-rezumat {
+          .rezumat-title {
+            font-size: 1.75rem;
+            margin-bottom: 1.75rem;
+            padding-bottom: 0.75rem;
+            border-bottom-width: 2px;
+          }
+
+          .rezumat-section {
+            margin-bottom: 2rem;
+            padding: 1.25rem;
+            border-radius: 8px;
+            border-left-width: 4px;
+
+            .rezumat-section-title {
+              font-size: 1.3rem;
+              margin-bottom: 1rem;
+              padding-bottom: 0.5rem;
+              border-bottom-width: 2px;
+
+              &:before {
+                width: 4px;
+                height: 20px;
+              }
+            }
+
+            .rezumat-subtitle {
+              font-size: 1.05rem;
+              margin: 1.25rem 0 0.875rem 0;
+            }
+
+            .rezumat-text {
+              font-size: 0.95rem;
+              line-height: 1.75;
+            }
+
+            .rezumat-list {
+              padding-left: 1.5rem;
+              margin: 1rem 0;
+
+              .rezumat-list-item {
+                font-size: 0.95rem;
+                margin-bottom: 0.5rem;
+              }
+            }
+
+            .rezumat-versuri {
+              padding-left: 1.25rem;
+              margin: 1rem 0;
+
+              .rezumat-vers {
+                font-size: 0.95rem;
+                line-height: 1.65;
+              }
+            }
+          }
+        }
+
+        .opera-themes ul li {
+          padding: 0.75rem 0.875rem;
+          margin: 0.35rem 0;
+          border-left-width: 3px;
+          border-radius: 0 10px 10px 0;
+        }
+
+        .opera-characters ul li {
+          margin: 0.35rem 0;
+          border-left-width: 3px;
+          border-radius: 0 10px 10px 0;
+
+          .opera-character-button {
+            padding: 0.75rem 0.875rem;
+
+            .opera-character-name {
+              font-size: 0.9rem;
+            }
+
+            .opera-character-toggle {
+              font-size: 1rem;
+              margin-left: 0.75rem;
+            }
+          }
+
+          .opera-character-description {
+            padding: 0 0.875rem 0.75rem 0.875rem;
+            font-size: 0.88rem;
+            line-height: 1.65;
+          }
+        }
+
+        .opera-symbols-list {
+          gap: 0.875rem;
+
+          &:before {
+            left: 12px;
+            width: 2px;
+          }
+
+          .opera-symbol-item {
+            padding: 1rem 1rem 1rem 2.75rem;
+
+            &:before {
+              left: 6px;
+              top: 18px;
+              width: 12px;
+              height: 12px;
+              box-shadow: 0 0 0 5px rgba(194, 140, 82, 0.22);
+            }
+
+            h4 {
+              font-size: 1.05rem;
+              margin-bottom: 0.35rem;
+            }
+
+            p {
+              font-size: 0.9rem;
+              line-height: 1.65;
+            }
+          }
+        }
+
+        .opera-title-points {
+          padding: 0.875rem 1rem;
+          border-radius: 14px;
+
+          li {
+            padding: 0.75rem 0 0.75rem 2rem;
+            font-size: 0.95rem;
+            line-height: 1.6;
+
+            &:before {
+              left: 0.35rem;
+              top: 1rem;
+              width: 9px;
+              height: 9px;
+              box-shadow: 0 0 0 3px rgba(194, 140, 82, 0.15);
+            }
+
+            &:not(:last-child) {
+              border-bottom-width: 1px;
+            }
+          }
+        }
+      }
+    }
+
+    .opera-actions {
+      margin-top: 1.75rem;
+      padding: 1.25rem;
+
+      .opera-read-btn {
+        padding: 0.875rem 1.75rem;
+        font-size: 0.9rem;
+        border-radius: 40px;
+        letter-spacing: 0.3px;
+
+        svg {
+          width: 18px;
+          height: 18px;
+        }
+      }
+    }
+  }
+
+  .scroll-to-top-btn {
+    right: 12px;
+    bottom: 12px;
+    width: 46px;
+    height: 46px;
+
+    svg {
+      width: 22px;
+      height: 22px;
+    }
+  }
+
+  .opera-video-wrapper {
+    border-radius: 10px;
+  }
+
+  .quiz-container {
+    gap: 1rem;
+  }
+
+  .quiz-item {
+    padding: 0.875rem;
+    border-radius: 8px;
+  }
+
+  .quiz-question {
+    font-size: 0.95rem;
+    margin-bottom: 0.625rem;
+  }
+
+  .quiz-options {
+    gap: 0.4rem;
+  }
+
+  .quiz-option {
+    padding: 0.5rem 0.875rem;
+    font-size: 0.9rem;
+    border-radius: 20px;
+  }
+
+  .quiz-submit {
+    padding: 0.625rem 1.25rem;
+    font-size: 0.9rem;
+  }
+
+  .quiz-explanation {
+    padding: 0.625rem;
+    font-size: 0.85rem;
+    margin-top: 0.625rem;
+  }
+}
+
+// Responsive design - Very Small Mobile (< 320px)
+@media (max-width: 320px) {
+  .opere-hero-full {
+    min-height: 400px;
+
+    .opera-author-avatar {
+      width: 50px;
+      height: 50px;
+      top: 80px;
+    }
+
+    .opere-hero-content {
+      padding: 0 0.75rem;
+      padding-top: 30px;
+
+      .opere-hero-title {
+        font-size: 1.5rem;
+        margin: 40px 0 0.35rem 0;
+      }
+
+      .opere-hero-subtitle {
+        font-size: 0.8rem;
+      }
+
+      .opere-hero-desc {
+        font-size: 0.8rem;
+      }
+    }
+
+    .opere-scroll-cue {
+      width: 80px;
+      height: 80px;
+
+      svg {
+        width: 60px;
+        height: 60px;
+      }
+    }
+  }
+
+  .opera-back-btn {
+    top: 10px;
+    left: 10px;
+    padding: 6px 10px;
+    font-size: 0.8rem;
+
+    .back-icon svg {
+      width: 16px;
+      height: 16px;
+    }
+  }
+
+  .opera-content-container {
+    padding: 0.5rem;
+
+    .opera-tabs {
+      padding: 4px 5px;
+
+      .opera-tab {
+        padding: 0.5rem 0.75rem;
+        font-size: 0.8rem;
+      }
+    }
+
+    .opera-tab-content-wrapper {
+      padding: 0.875rem;
+
+      .opera-tab-content {
+        h3 {
+          font-size: 1.05rem;
+        }
+
+        p {
+          font-size: 0.85rem;
+        }
+
+        ul li {
+          font-size: 0.85rem;
+          padding-left: 1.25rem;
+        }
+      }
+    }
+
+    .opera-actions .opera-read-btn {
+      padding: 0.75rem 1.5rem;
+      font-size: 0.85rem;
+    }
+  }
+
+  .scroll-to-top-btn {
+    right: 10px;
+    bottom: 10px;
+    width: 42px;
+    height: 42px;
+
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+  }
+}
+
+// Dark theme
+.dark-theme {
+  .opera-content-container {
+    .opera-comment-dropdowns {
+      // Custom select in dark theme
+      .ocs-button {
+        background: linear-gradient(180deg, rgba(78, 46, 30, 0.85) 0%, rgba(42, 23, 10, 0.85) 100%);
+        color: #ffd591;
+        border-color: rgba(255, 213, 145, 0.25);
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+
+        &:hover {
+          color: #ffd591;
+          background: rgba(255, 213, 145, 0.08);
+          border-color: rgba(255, 213, 145, 0.35);
+          box-shadow: 0 8px 22px rgba(0, 0, 0, 0.4);
+        }
+
+        &:focus,
+        &.open {
+          border-color: #ffb366;
+          box-shadow: 0 0 0 3px rgba(255, 179, 102, 0.2);
+        }
+      }
+
+      .ocs-caret {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%23ffd591' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+      }
+
+      .ocs-panel {
+        background: #3d2815;
+        border-color: #5a3a20;
+        box-shadow: 0 12px 28px rgba(0, 0, 0, 0.45);
+      }
+
+      .ocs-option {
+        color: #ffd591;
+
+        &:hover {
+          background: rgba(255, 213, 145, 0.08);
+          color: #ffd591;
+        }
+
+        &.active {
+          background: linear-gradient(180deg, rgba(78, 46, 30, 0.85) 0%, rgba(42, 23, 10, 0.85) 100%);
+          border: 1px solid rgba(255, 213, 145, 0.25);
+        }
+      }
+    }
+    .opera-comment-dropdowns {
+      select {
+        background: linear-gradient(180deg, rgba(78, 46, 30, 0.85) 0%, rgba(42, 23, 10, 0.85) 100%);
+        color: #ffd591;
+        border-color: rgba(255, 213, 145, 0.25);
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%23ffd591' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+
+        &:hover {
+          color: #ffd591;
+          background: rgba(255, 213, 145, 0.08);
+          border-color: rgba(255, 213, 145, 0.35);
+          box-shadow: 0 8px 22px rgba(0, 0, 0, 0.4);
+        }
+
+        &:focus {
+          border-color: #ffb366;
+          box-shadow: 0 0 0 3px rgba(255, 179, 102, 0.2);
+        }
+
+        option {
+          color: #ffd591;
+          background: #3d2815;
+        }
+      }
+    }
+    .opera-tabs {
+      background: rgba(61, 40, 21, 0.85);
+      border-color: rgba(255, 213, 145, 0.25);
+      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.35);
+
+      .theme-toggle {
+        border-color: #fbeec1;
+      }
+    }
+
+    .opera-tabs .opera-tab {
+      color: rgba(255, 255, 255, 0.85);
+
+      &:hover {
+        color: #ffd591;
+        background: rgba(255, 213, 145, 0.08);
+        border-color: rgba(255, 213, 145, 0.25);
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+      }
+
+      &.active {
+        color: #ffd591;
+        background: linear-gradient(180deg, rgba(78, 46, 30, 0.85) 0%, rgba(42, 23, 10, 0.85) 100%);
+        border-color: rgba(255, 213, 145, 0.25);
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+      }
+    }
+
+    .opera-tab-content-wrapper {
+      background: #3d2815;
+      border-color: #5a3a20;
+    }
+
+    .opera-tab-content-wrapper .opera-tab-content {
+      h3 {
+        color: #ffd591;
+
+        &:before {
+          background: #ffd591;
+        }
+      }
+
+      p {
+        color: #e0e0e0;
+      }
+
+      ul li {
+        border-bottom-color: #444;
+        color: #e0e0e0;
+
+        // &:hover {
+        //   // background: rgba(255, 213, 145, 0.05);
+        // }
+
+        &:before {
+          background: #ffd591;
+          box-shadow: 0 0 0 3px rgba(255, 213, 145, 0.15);
+        }
+      }
+
+      .opera-description,
+      .opera-themes,
+      .opera-characters,
+      .opera-analysis,
+      .opera-quotes {
+        background: #3d2815;
+        border-left-color: #ffd591;
+        transition: background 0.25s ease, box-shadow 0.25s ease;
+      }
+
+      .opera-description:hover,
+      .opera-themes:hover,
+      .opera-characters:hover,
+      .opera-analysis:hover,
+      .opera-quotes:hover {
+        background: #4a2e1a;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+      }
+
+      // Rezumat dark theme styles
+      .opera-rezumat {
+        .rezumat-title {
+          color: #ffd591;
+          border-bottom-color: #ffd591;
+        }
+
+        .rezumat-section {
+          background: #3d2815;
+          border-left-color: #ffd591;
+
+          &:hover {
+            background: #4a2e1a;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+          }
+
+          .rezumat-section-title {
+            color: #ffb366;
+            border-bottom-color: #5a3a20;
+
+            &:before {
+              background: #ffd591;
+            }
+          }
+
+          .rezumat-subtitle {
+            color: #ffb366;
+            border-bottom-color: #5a3a20;
+          }
+
+          .rezumat-text {
+            color: #e0e0e0;
+          }
+
+          .rezumat-list {
+            .rezumat-list-item {
+              color: #e0e0e0;
+            }
+          }
+
+          .rezumat-versuri {
+            .rezumat-vers {
+              color: #d0d0d0;
+            }
+          }
+        }
+      }
+
+      .opera-quote {
+        background: linear-gradient(135deg, #3d2815 0%, #4a2e1a 100%);
+        color: #fbeec1;
+        border-left-color: #ffd591;
+
+        &:before {
+          color: #ffd591;
+        }
+
+        transition: transform 0.25s ease,
+        box-shadow 0.25s ease,
+        background 0.25s ease,
+        border-color 0.25s ease;
+
+        &:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 12px 28px rgba(0, 0, 0, 0.45);
+          background: linear-gradient(135deg, #4a2e1a 0%, #5a3a20 100%);
+          border-left-color: #ffb366;
+        }
+      }
+
+      // Card-like list items pentru Teme principale (dark)
+      .opera-themes ul li {
+        background: linear-gradient(135deg, #3d2815 0%, #4a2e1a 100%);
+        margin: 0.5rem 0;
+        padding: 1rem 1.25rem;
+        border-left: 4px solid #ffd591;
+        border-radius: 0 12px 12px 0;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
+        transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease, border-color 0.25s ease;
+        border-bottom: none;
+        color: #fbeec1;
+      }
+
+      .opera-themes ul li:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 12px 28px rgba(0, 0, 0, 0.5);
+        background: linear-gradient(135deg, #4a2e1a 0%, #5a3a20 100%);
+        border-left-color: #ffb366;
+      }
+
+      .opera-themes ul li:before {
+        display: none;
+      }
+
+      // Card-like list items pentru Personaje principale (dark - container accordion)
+      .opera-characters ul li {
+        background: linear-gradient(135deg, #3d2815 0%, #4a2e1a 100%);
+        margin: 0.5rem 0;
+        padding: 0;
+        border-left: 4px solid #ffd591;
+        border-radius: 0 12px 12px 0;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
+        transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease, border-color 0.25s ease;
+        border-bottom: none;
+        color: #fbeec1;
+      }
+
+      .opera-characters ul li:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 12px 28px rgba(0, 0, 0, 0.5);
+        background: linear-gradient(135deg, #4a2e1a 0%, #5a3a20 100%);
+        border-left-color: #ffb366;
+      }
+
+      .opera-characters ul li:before {
+        display: none;
+      }
+
+      .opera-characters {
+        ul {
+          list-style: none;
+          margin: 0;
+          padding: 0;
+        }
+
+        .opera-character-item {
+          cursor: pointer;
+          overflow: hidden;
+        }
+
+        .opera-character-button {
+          width: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 1rem 1.25rem;
+          background: transparent;
+          border: none;
+          outline: none;
+          font: inherit;
+          text-align: left;
+          color: #fbeec1;
+
+          .opera-character-name {
+            font-weight: 600;
+          }
+
+          .opera-character-toggle {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #ffd591;
+            margin-left: 1rem;
+          }
+        }
+
+        .opera-character-description {
+          padding: 0 1.25rem 1rem 1.25rem;
+          border-top: 1px solid rgba(255, 255, 255, 0.08);
+          font-size: 0.98rem;
+          line-height: 1.7;
+          color: #ffe8b0;
+          background: linear-gradient(135deg, #4a2e1a 0%, #5a3a20 100%);
+        }
+      }
+
+      .opera-symbols-list {
+        &:before {
+          background: linear-gradient(180deg, rgba(255, 213, 145, 0.75), rgba(255, 213, 145, 0.08));
+        }
+
+        .opera-symbol-item {
+          background: linear-gradient(135deg, rgba(61, 40, 21, 0.96) 0%, rgba(33, 21, 11, 0.96) 100%);
+          border-color: rgba(255, 213, 145, 0.32);
+          box-shadow: 0 18px 38px rgba(0, 0, 0, 0.55);
+
+          &:before {
+            background: #ffd591;
+            box-shadow: 0 0 0 6px rgba(255, 213, 145, 0.15);
+          }
+
+          h4 {
+            color: #ffd591;
+          }
+
+          p {
+            color: rgba(255, 255, 255, 0.78);
+          }
+
+          &:hover {
+            border-color: rgba(255, 213, 145, 0.4);
+            box-shadow: 0 20px 42px rgba(0, 0, 0, 0.55);
+          }
+        }
+      }
+
+      .opera-title-points {
+        background: linear-gradient(135deg, #3d2815 0%, #2a1a0e 100%);
+        border-color: rgba(255, 213, 145, 0.25);
+        box-shadow: 0 16px 30px rgba(0, 0, 0, 0.45);
+
+        li {
+          color: rgba(255, 255, 255, 0.8);
+          border-bottom-color: rgba(255, 213, 145, 0.15);
+
+          &:before {
+            background: #ffd591;
+            box-shadow: 0 0 0 4px rgba(255, 213, 145, 0.2);
+          }
+
+          &:not(:last-child)::after {
+            background: linear-gradient(180deg, rgba(255, 213, 145, 0.35), rgba(255, 213, 145, 0));
+          }
+        }
+
+        &:before {
+          background: linear-gradient(145deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0));
+        }
+
+        &:after {
+          border-color: rgba(255, 213, 145, 0.2);
+        }
+      }
+
+      // Quiz styles for dark theme
+      .quiz-container {
+        .quiz-item {
+          background: #3d2815;
+          border-color: #5a3a20;
+        }
+
+        .quiz-question {
+          color: #fbeec1;
+        }
+
+        .quiz-option {
+          background: #4a2e1a;
+          border-color: #5a3a20;
+          color: #fbeec1;
+
+          &:hover {
+            background: #5a3a20;
+          }
+
+          &.chosen {
+            border-color: #ffd591;
+            background: rgba(255, 213, 145, 0.15);
+            color: #ffd591;
+          }
+
+          &.correct {
+            border-color: #43aa8b;
+            background: rgba(67, 170, 139, 0.15);
+            color: #43aa8b;
+          }
+
+          &.wrong {
+            border-color: #ff595e;
+            background: rgba(255, 89, 94, 0.15);
+            color: #ff595e;
+          }
+        }
+
+        .quiz-submit {
+          background: linear-gradient(135deg, #ffd591 0%, #ffb366 100%);
+          color: #333;
+
+          &:hover {
+            background: linear-gradient(135deg, #ffb366 0%, #ff9f33 100%);
+          }
+        }
+
+        .quiz-result {
+          color: #ffd591;
+        }
+
+        .quiz-explanation {
+          background: rgba(67, 170, 139, 0.15);
+          border-left-color: #43aa8b;
+          color: #a8e6cf;
+        }
+      }
+    }
+
+    .opera-actions {
+      background: none !important;
+    }
+
+    .opera-actions .opera-read-btn {
+      background: linear-gradient(135deg, #ffd591 0%, #ffb366 100%);
+      color: #333;
+
+      &:hover {
+        background: linear-gradient(135deg, #ffb366 0%, #ff9f33 100%);
+      }
+    }
+
+    .opera-no-details,
+    .opera-comment-missing {
+      background: #3d2815;
+      border-color: #5a3a20;
+      color: #fbeec1;
+
+      h3 {
+        color: #ffd591;
+      }
+    }
+
+    .opera-comment-frame {
+      background: #3d2815;
+    }
+  }
+
+  .opere-hero-full {
+    .opera-author-avatar {
+      border-color: rgba(255, 213, 145, 0.9);
+      background: rgba(0, 0, 0, 0.25);
+    }
+
+    .opera-author-avatar:hover {
+      border-color: #ffb366;
+    }
+  }
+}
+
+// Scroll to top button - fixed bottom-right corner
+.scroll-to-top-btn {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: 1px solid rgba(169, 124, 80, 0.35);
+  background: linear-gradient(135deg, rgba(255, 213, 145, 0.95) 0%, rgba(255, 179, 102, 0.95) 100%);
+  color: #4e2e1e;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 26px rgba(169, 124, 80, 0.35);
+  cursor: pointer;
+  z-index: 60;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease, background 0.2s ease;
+  outline: none;
+
+  &:focus {
+    outline: none;
+  }
+
+  svg {
+    pointer-events: none;
+    width: 28px;
+    height: 28px;
+    stroke-width: 5;
+  }
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 34px rgba(169, 124, 80, 0.45);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+.dark-theme {
+  .scroll-to-top-btn {
+    border-color: rgba(255, 213, 145, 0.35);
+    background: linear-gradient(135deg, rgba(255, 213, 145, 0.85) 0%, rgba(255, 179, 102, 0.85) 100%);
+    color: #2a170a;
+    box-shadow: 0 10px 26px rgba(0, 0, 0, 0.45);
+  }
+}
+
+// Poem Modal Styles - Same as Scriitor page
+.opera-poem-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(30, 20, 10, 0.45);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.opera-curent-link{
+  background: linear-gradient(135deg, #a97c50 0%, #8b6b42 100%);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1.2rem;
+  border-radius: 5rem;
+  margin-top: 20px;
+  display: inline-block;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  &:hover {
+    background: linear-gradient(135deg, #8b6b42 0%, #6d5233 100%);
+    box-shadow: 0 8px 25px rgba(169, 124, 80, 0.4);
+    transform: translateY(-2px);
+  }
+  &:focus {
+    outline: none !important;
+  }
+  &:active {
+    transform: translateY(1px);
+  }
+  &:visited {
+    color: white;
+  }
+  .dark-theme & {
+    background: linear-gradient(135deg, #ffd591 0%, #ffb366 100%);
+      color: #333;
+
+      &:hover {
+        background: linear-gradient(135deg, #ffb366 0%, #ff9f33 100%);
+      }
+  }
+}
+.opera-poem-modal {
+  background: rgb(255, 255, 255);
+  border-radius: 18px;
+  box-shadow: 0 8px 32px 0 rgba(60, 40, 20, 0.18);
+  max-width: 90vw;
+  max-height: 90vh;
+  width: 800px;
+  position: relative;
+  z-index: 1010;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+
+  .opera-poem-modal-header {
+    padding: 2rem 2rem 1rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+
+    h2 {
+      font-weight: 900;
+      font-size: 2.5rem;
+      padding-top: 2.5rem;
+      color: #a97c50;
+      margin: 0;
+      text-align: center;
+    }
+
+    .opera-poem-modal-close {
+      position: absolute;
+      right: 1rem;
+      top: 0.5rem;
+      background: none;
+      border: none;
+      border-radius: 0;
+      font-size: 32px;
+      color: #a97c50;
+      font-weight: 900;
+      cursor: pointer;
+      z-index: 1020;
+      box-shadow: none;
+      outline: none !important;
+      transition: none;
+      padding: 5px;
+
+      &:hover {
+        color: #7c4f2b;
+      }
+
+      &:focus {
+        outline: none !important;
+      }
+    }
+  }
+  .opera-poem-modal-content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 3rem 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    // Hide scrollbar
+    scrollbar-width: none; // Firefox
+    -ms-overflow-style: none; // IE and Edge
+
+    &::-webkit-scrollbar {
+      // Chrome, Safari, Opera
+      display: none;
+    }
+
+
+    .opera-poem-text {
+      max-width: 600px;
+      width: 100%;
+      font-style: italic;
+      line-height: 2;
+      color: #444;
+      white-space: pre-line;
+      text-align: center;
+      font-size: 1.3rem;
+      font-weight: 500;
+    }
+  }
+}
+
+@keyframes poemModalSlideIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9) translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+// Dark theme for poem modal - Same as Scriitor page
+.dark-theme {
+  .opera-poem-modal {
+    background: #2a170a;
+
+    .opera-poem-modal-header {
+      h2 {
+        color: #ffd591;
+      }
+
+      .opera-poem-modal-close {
+        color: #ffd591;
+
+        &:hover {
+          color: #ffb366;
+        }
+      }
+    }
+
+    .opera-poem-modal-content {
+      .opera-poem-text {
+        color: #f0f0f0;
+      }
+    }
+  }
+}
+
+// Responsive design for poem modal
+@media (max-width: 1024px) {
+  .opera-poem-modal {
+    width: 85vw;
+    max-width: 750px;
+  }
+}
+
+@media (max-width: 768px) {
+  .opera-poem-modal {
+    margin: 0.5rem;
+    max-height: 90vh;
+    width: 95vw;
+    border-radius: 16px;
+
+    .opera-poem-modal-header {
+      padding: 1.5rem 1.5rem 1rem 1.5rem;
+
+      h2 {
+        font-size: 1.75rem;
+        padding-top: 2rem;
+      }
+
+      .opera-poem-modal-close {
+        right: 0.75rem;
+        top: 0.4rem;
+        font-size: 28px;
+      }
+    }
+
+    .opera-poem-modal-content {
+      padding: 2rem 1.5rem;
+
+      .opera-poem-text {
+        font-size: 1.1rem;
+        line-height: 1.75;
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .opera-poem-modal {
+    width: 98vw;
+    margin: 0.25rem;
+    border-radius: 14px;
+    max-height: 95vh;
+
+    .opera-poem-modal-header {
+      padding: 1.25rem 1.25rem 0.875rem 1.25rem;
+
+      h2 {
+        font-size: 1.5rem;
+        padding-top: 1.75rem;
+      }
+
+      .opera-poem-modal-close {
+        right: 0.625rem;
+        top: 0.3rem;
+        font-size: 24px;
+        padding: 4px;
+      }
+    }
+
+    .opera-poem-modal-content {
+      padding: 1.5rem 1.25rem;
+
+      .opera-poem-text {
+        font-size: 1rem;
+        line-height: 1.7;
+        max-width: 100%;
+      }
+    }
+  }
+}
+
+@media (max-width: 320px) {
+  .opera-poem-modal {
+    width: 100vw;
+    margin: 0;
+    border-radius: 0;
+    max-height: 100vh;
+
+    .opera-poem-modal-header {
+      padding: 1rem 1rem 0.75rem 1rem;
+
+      h2 {
+        font-size: 1.35rem;
+        padding-top: 1.5rem;
+      }
+
+      .opera-poem-modal-close {
+        right: 0.5rem;
+        top: 0.25rem;
+        font-size: 22px;
+      }
+    }
+
+    .opera-poem-modal-content {
+      padding: 1.25rem 1rem;
+
+      .opera-poem-text {
+        font-size: 0.95rem;
+        line-height: 1.65;
+      }
+    }
+  }
+}
